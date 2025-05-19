@@ -1,0 +1,253 @@
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  top: 0;
+}
+
+#root {
+  --background: #F1F5F9;
+  --text: #0F172A;
+  --navbar-background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  #root {
+    --background: #0A0A12;
+    --text: white;
+    --navbar-background: #171A26;
+  }
+
+  .notice {
+    background-color: #121D3A;
+  }
+
+  .harvest-card-content {
+    color: white !important;
+  }
+
+}
+
+#root[dark-theme] {
+  --background: #0A0A12;
+  --text: white;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  font-family: Poppins;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  color: var(--text);
+  position: relative;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.app-main {
+  width: 100%;
+  height: 93.5%;
+  min-height: calc(100% - 72px);
+  background-color: transparent;
+  /* display: flex;
+  flex-direction: column;
+  gap: 16px; */
+  padding: 0 5.5%;
+  padding-bottom: 24px;
+}
+
+.app-main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.app-main-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.app-main-header > span:first-child {
+  font-size: clamp(1rem, 1.32vw, 1.5rem);
+}
+
+.app-main-header > span:nth-child(2), .view-all {
+  font-size: clamp(.6rem, .8vw, .875rem);
+  color: #0052FE;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.app-main-header-note {
+  font-size: clamp(.55rem, .55vw, .72rem);
+  position: absolute;
+  width: 30%;
+  background-color: white;
+  color: #0F172A;
+  padding: 6px 16px;
+  border-radius: 6px;
+  left: 20px;
+  top: 28px;
+  display: none;
+}
+
+.app-main-header:has(span:nth-child(2):hover) > .app-main-header-note {
+  display: inline;
+} 
+
+
+
+.view-all {
+  position: absolute;
+  bottom: 0;
+}
+
+.app-main-cards {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  height: 36.5%;
+  max-height: 295px;
+}
+
+.holdings-container {
+  width: 100%;
+  height: 46%;
+  background-color: var(--navbar-background);
+  box-shadow: 0 2px 8px #1E293B2E;
+  border-radius: 8.8px;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+
+
+.holdings {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  padding: 16px;
+  gap: 12px;
+  position: relative;
+}
+
+.holdings > span:first-child {
+  font-size: clamp(.98rem, 1vw, 1.25rem);
+  font-weight: 500;
+}
+
+.holdings-header {
+  padding: 6.5px 8px;
+  position: relative;
+  padding-left: 40px;
+  width: 100%;
+  position: relative;
+  font-size: clamp(.7rem, .8vw, 1rem);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: var(--background);
+  border-radius: 6px;
+  align-items: center;
+}
+
+.holdings-header > div {
+  justify-content: flex-end;
+  display: flex;
+  gap: 2px;
+  padding-right: 16px;
+}
+
+.market-rate {
+  flex-direction: column;
+  align-items: flex-end;
+
+  span:last-child {
+    color: #64748B;
+    font-size: clamp(.55rem, .6vw, .75rem);
+  }
+}
+
+.holdings-header > div:first-child {
+  justify-content: flex-start;
+}
+
+.toggle-select, .toggle-select-active {
+  height: 16px;
+  border: 2px solid #64748B;
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  cursor: pointer;
+  width: 16px;
+  left: 12px;
+}
+
+.toggle-select-active {
+  border: none;
+  background-color: #0052FE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.holdings-carousel {
+  width: 100%;
+  height: 70%;
+  overflow: auto;
+}
+
+.holdings-carousel::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+.holdings-carousel::-webkit-scrollbar-thumb {
+  background-color:  rgb(220, 220, 220);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.holdings-carousel-inner {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: fit-content;
+}
+
+@media screen and (max-width: 600px) {
+  .app-main {
+    overflow: auto;
+  }
+
+  .holdings-container {
+    height: 500px;
+    /* display: none; */
+  }
+
+  .app-main-cards {
+    flex-direction: column;
+    height: fit-content;
+    max-height: fit-content;
+  }
+
+  .app-main-container {
+    height: fit-content;
+  }
+}
