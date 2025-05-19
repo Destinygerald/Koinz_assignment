@@ -50,10 +50,8 @@ function App() {
                 type='pre' 
                 shortTermProfit={profitsAndLoss?.stcg?.profits}
                 shortTermLoss={profitsAndLoss?.stcg?.losses}
-                shortTermNetCapitalGains={0}
                 longTermProfit={profitsAndLoss?.ltcg?.profits}
                 longTermLoss={profitsAndLoss?.ltcg?.losses}
-                longTermNetCapitalGains={0}
                 realisedCapitalGains={0}
               />
               
@@ -61,10 +59,8 @@ function App() {
                 type='post' 
                 shortTermProfit={profitsAndLoss?.stcg?.profits}
                 shortTermLoss={profitsAndLoss?.stcg?.losses}
-                shortTermNetCapitalGains={0}
                 longTermProfit={profitsAndLoss?.ltcg?.profits}
                 longTermLoss={profitsAndLoss?.ltcg?.losses}
-                longTermNetCapitalGains={0}
                 effectiveCapitalGains={0}
               />
           </div>

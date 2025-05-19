@@ -4,10 +4,8 @@ interface IHarvestCard {
     type: "pre" | "post",
     shortTermProfit: number,
     shortTermLoss: number,
-    shortTermNetCapitalGains: number,
     longTermProfit: number,
     longTermLoss: number,
-    longTermNetCapitalGains: number,
     realisedCapitalGains?: number,
     effectiveCapitalGains?: number
 }
@@ -17,12 +15,10 @@ export default function HarvestCard ({
     type, 
     shortTermProfit,
     shortTermLoss,
-    shortTermNetCapitalGains,
     longTermProfit,
     longTermLoss,
-    longTermNetCapitalGains,
-    realisedCapitalGains,
-    effectiveCapitalGains
+    realisedCapitalGains=0,
+    effectiveCapitalGains=0
 }: IHarvestCard) {
     
     function handleCardType (){
@@ -35,8 +31,10 @@ export default function HarvestCard ({
 
     function handleResult ():number {
         if (type == 'pre') {
-
-        } else {}
+            return realisedCapitalGains
+        } else {
+            return effectiveCapitalGains
+        }
         
         return 0;
     }

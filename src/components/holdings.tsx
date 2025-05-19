@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { GoDash } from 'react-icons/go';
 import { fetchTokens, IResponse } from '../api/fetchData';
-import { HoldingCard, IHoldingCard } from './holdingsCard';
+import { HoldingCard } from './holdingsCard';
 import '../App.css'
 
 export interface IHoldingHdr {
