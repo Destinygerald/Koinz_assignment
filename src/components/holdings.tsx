@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { GoDash } from 'react-icons/go';
-import { fetchTokens, IResponse } from '../api/fetchData';
 import { HoldingCard } from './holdingsCard';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import '../App.css'
