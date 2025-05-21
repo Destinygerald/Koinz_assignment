@@ -6,7 +6,9 @@ interface IHarvestCard {
     shortTermProfit: number,
     shortTermLoss: number,
     longTermProfit: number,
-    longTermLoss: number
+    longTermLoss: number,
+    fixedProfit?: number,
+    fixedloss?: number
 }
 
 
@@ -15,7 +17,9 @@ export default function HarvestCard ({
     shortTermProfit,
     shortTermLoss,
     longTermProfit,
-    longTermLoss
+    longTermLoss,
+    fixedProfit=0,
+    fixedloss=0
 }: IHarvestCard) {
     
 
@@ -61,10 +65,10 @@ export default function HarvestCard ({
 
 
             {
-                type == 'post'
+                type == 'post' && (fixedProfit - fixedloss > shortTermProfit - shortTermLoss)
                 ?
                 <div className='safe-text'>
-                    🎉 Your taxable capital gains are reduced by:
+                    🎉 Your taxable capital gains are reduced by: {((fixedProfit - fixedloss) - (shortTermProfit - shortTermLoss))}
                 </div>
                 :
                 ''

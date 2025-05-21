@@ -112,6 +112,8 @@ function App() {
                   shortTermLoss={varyingProfitLoss?.stcg?.losses}
                   longTermProfit={profitsAndLoss?.ltcg?.profits}
                   longTermLoss={profitsAndLoss?.ltcg?.losses}
+                  fixedProfit={profitsAndLoss?.stcg?.profits}
+                  fixedloss={profitsAndLoss?.stcg?.losses}
                 />
             </div>
 
