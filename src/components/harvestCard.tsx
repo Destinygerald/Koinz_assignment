@@ -1,13 +1,12 @@
 import '../styles/components.css'
+import { parseAmountToTwo } from '../utils/functions'
 
 interface IHarvestCard {
     type: "pre" | "post",
     shortTermProfit: number,
     shortTermLoss: number,
     longTermProfit: number,
-    longTermLoss: number,
-    realisedCapitalGains?: number,
-    effectiveCapitalGains?: number
+    longTermLoss: number
 }
 
 
@@ -16,11 +15,10 @@ export default function HarvestCard ({
     shortTermProfit,
     shortTermLoss,
     longTermProfit,
-    longTermLoss,
-    realisedCapitalGains=0,
-    effectiveCapitalGains=0
+    longTermLoss
 }: IHarvestCard) {
     
+
     function handleCardType (){
         return type == "pre" ? "Pre Harvesting" : "After Harvesting"
     }
@@ -30,14 +28,9 @@ export default function HarvestCard ({
     }
 
     function handleResult ():number {
-        if (type == 'pre') {
-            return realisedCapitalGains
-        } else {
-            return effectiveCapitalGains
-        }
-        
-        return 0;
+        return shortTermProfit - shortTermLoss;
     }
+
 
     return (
         <div className={type == 'pre' ? 'harvest-card': 'harvest-card post-harvest-card'}>
@@ -49,22 +42,33 @@ export default function HarvestCard ({
                 <span>Long-term</span>
 
                 <span className='harvest-card-content-hdr'>Profit</span>
-                <span>${shortTermProfit}</span>
+                <span>${parseAmountToTwo(shortTermProfit)}</span>
                 <span>${longTermProfit}</span>
 
                 <span className='harvest-card-content-hdr'>Losses</span>
-                <span>-${shortTermLoss}</span>
+                <span>-${parseAmountToTwo(shortTermLoss)}</span>
                 <span>-${longTermLoss}</span>
 
                 <span className='harvest-card-content-hdr'>Net Capital Gains</span>
-                <span>${shortTermProfit - shortTermLoss}</span>
+                <span>${parseAmountToTwo(shortTermProfit - shortTermLoss)}</span>
                 <span>${longTermProfit - longTermLoss}</span>
             </div>
 
             <div className='harvest-card-result'>
                 <span>{ handleResultType() }</span>
-                <span>${ handleResult() }</span>
+                <span>${ parseAmountToTwo(handleResult()) }</span>
             </div>
+
+
+            {
+                type == 'post'
+                ?
+                <div className='safe-text'>
+                    🎉 Your taxable capital gains are reduced by:
+                </div>
+                :
+                ''
+            }
         </div>
     )
 }

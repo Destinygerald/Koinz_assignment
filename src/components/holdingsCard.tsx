@@ -63,6 +63,11 @@ export function HoldingCard ({
         toggleSelection(_id)
     }
 
+    // if (id == 1) {
+    //     console.log(selectedAll)
+    //     console.log(selected.includes(id))
+    // }
+
     return (
         <div className='holdings-card'>
             <div className='holding-card-asset'>
@@ -92,7 +97,7 @@ export function HoldingCard ({
                 <span>{longTermResult} {symbol}</span>
             </div>
             
-            <div>{amountToSell}</div>
+            <div>{amountToSell || '-'}</div>
 
             <span className={handleClass()} onClick={handleClick}>
                 {

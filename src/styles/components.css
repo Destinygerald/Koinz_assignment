@@ -67,10 +67,11 @@
     padding-right: 44px;
     display: flex;
     flex-direction: column;
-    gap: 8.8px;
+    gap: 7.2px;
     border-radius: 8.8px;
     box-shadow: 0 2px 8px #1E293B2E;
     height: 100%;
+    position: relative;
 }
 
 .harvest-card {
@@ -185,6 +186,14 @@
 
 .asset-details > span:last-child {
     font-size: clamp(.55rem, .55vw, .65rem);
+}
+
+.safe-text {
+    font-size: clamp(.5rem, .55vw, .6rem);
+    color: white;
+    position: absolute;
+    bottom: 8.8px;
+    left: 18px;
 }
 
 @media screen and (max-width: 600px) {

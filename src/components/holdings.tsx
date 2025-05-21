@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { GoDash } from 'react-icons/go';
 import { fetchTokens, IResponse } from '../api/fetchData';
 import { HoldingCard } from './holdingsCard';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import '../App.css'
+import { addAllToken, addToken, clearTokens, removeToken } from '../redux/features/selectedTokens';
 
 export interface IHoldingHdr {
     selectedAll: boolean,
@@ -48,42 +50,31 @@ function HoldingdHdr ({ selectedAll, toggleSelect, selected }: IHoldingHdr) {
 export function Holdings () {
     
     const [ more, setMore ] = useState<boolean>(false);
-    const [ selected, setSelected ] = useState<number[]>([])
     const [ selectedAll, setSelectedAll ] = useState<boolean>(false);
 
-    const [ tokens, setToken ] = useState<any[] | null[]>([])
-
     
+    const selected = useAppSelector(state => state.selectedTokens.value)
+    const tokens = useAppSelector(state => state.availableTokens.value)
+    
+    const dispatch = useAppDispatch()
 
     function toggleSelect () {
-        setSelectedAll(!selectedAll)
-        
 
         if (!selectedAll) {
-            
             let allToken: number[] = [];
             
             tokens.forEach(token => {
                 // @ts-ignore
                 allToken.push(token.id)    
             })
-
-            setSelected([...allToken])
+            
+            setSelectedAll(true)
+            dispatch(addAllToken(allToken))
 
         } else {
-            setSelected([])
+            setSelectedAll(false)
+            dispatch(clearTokens())
         }
-    }
-
-    async function getTokens() {
-
-        const res: IResponse  = await fetchTokens()
-
-        if (res.status == 200) {
-            setToken([...res.data])
-        }
-
-        return;
     }
 
     function toggleMore () {
@@ -92,12 +83,10 @@ export function Holdings () {
 
     function toggleSelection (id: number) {
         if (selected.includes(id)) {
-            let newSeleceted: number[] = selected.filter(item => item != id)
-
-            setSelected([...newSeleceted])
+            dispatch(removeToken(id))
             setSelectedAll(false)
         } else {
-            setSelected([ ...selected, id ])
+            dispatch(addToken(id))
         }
     }
 
@@ -133,10 +122,6 @@ export function Holdings () {
             ))
         )
     }
-
-    useEffect(() => {
-        getTokens()
-    }, [])
 
     return (
         <div className='holdings-container'>
