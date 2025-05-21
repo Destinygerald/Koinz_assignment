@@ -1,7 +1,7 @@
 import { IoCheckmarkSharp } from 'react-icons/io5'
 import '../styles/components.css'
 import { IHoldingHdr } from './holdings'
-import { parseAmount } from '../utils/functions'
+import { parseAmount, parseAmountToTwo } from '../utils/functions'
 
 export interface IHoldingCard extends IHoldingHdr {
     id: number ,
@@ -53,7 +53,7 @@ export function HoldingCard ({
 
             return value;
         }
-        return parseAmount(shortTerm);
+        return `$${parseAmount(shortTerm)}`;
     }
 
     function handleClick () {
@@ -63,10 +63,10 @@ export function HoldingCard ({
         toggleSelection(_id)
     }
 
-    // if (id == 1) {
-    //     console.log(selectedAll)
-    //     console.log(selected.includes(id))
-    // }
+    function styleShortTerm () {
+        return shortTerm > 0 ? 'green' : 'red'
+    }
+
 
     return (
         <div className='holdings-card'>
@@ -85,10 +85,10 @@ export function HoldingCard ({
                 <span>{parseAmount(averageBuyPrice)} {symbol}</span>
             </div>
 
-            <div>{totalCurrentValue}</div>
+            <div>${parseAmountToTwo(totalCurrentValue)}</div>
             
             <div className='asset-details'>
-                <span>{handleShortTerm()}</span>
+                <span className={styleShortTerm()}>{handleShortTerm()}</span>
                 <span>{parseAmount(shortTermResult)} {symbol}</span>
             </div>
             

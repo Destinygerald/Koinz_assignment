@@ -109,6 +109,7 @@
     grid-column: span 2;
 }
 
+
 .harvest-card-result {
     display: flex;
     gap: 32px;
@@ -187,6 +188,15 @@
 .asset-details > span:last-child {
     font-size: clamp(.55rem, .55vw, .65rem);
 }
+
+.red {
+    color: rgb(186, 0, 0);
+}
+
+.green {
+    color: rgb(0, 186, 56);
+}
+
 
 .safe-text {
     font-size: clamp(.5rem, .55vw, .6rem);
