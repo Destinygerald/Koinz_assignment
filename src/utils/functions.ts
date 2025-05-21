@@ -3,5 +3,8 @@ export function parseAmount (arg: number): string {
 }
 
 export function parseAmountToTwo (arg: number): string {
+    
+    if (!arg)  return '';
+
     return arg.toFixed(2)
 }
